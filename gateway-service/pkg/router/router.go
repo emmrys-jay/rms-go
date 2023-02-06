@@ -31,6 +31,9 @@ func Setup(validate *validator.Validate, logger *utility.Logger) *fiber.App {
 	ApiVersion := "v1"
 	Health(app, validate, ApiVersion, logger)
 	Auth(app, validate, ApiVersion, logger)
+	Order(app, validate, ApiVersion, logger)
+	User(app, validate, ApiVersion, logger)
+	Worker(app, validate, ApiVersion, logger)
 
 	return app
 }

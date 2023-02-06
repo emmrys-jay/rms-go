@@ -11,12 +11,12 @@ import (
 
 func Health(app *fiber.App, validate *validator.Validate, ApiVersion string, logger *utility.Logger) *fiber.App {
 
-	health := health.Controller{Validate: validate, Logger: logger}
+	healthCtrl := health.Controller{Validate: validate, Logger: logger}
 
 	authUrl := app.Group(fmt.Sprintf("/api/%v", ApiVersion))
 	{
-		authUrl.Post("/health", health.Post)
-		authUrl.Get("/health", health.Get)
+		authUrl.Post("/health", healthCtrl.Post)
+		authUrl.Get("/health", healthCtrl.Get)
 	}
 	return app
 }
