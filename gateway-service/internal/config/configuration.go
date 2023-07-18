@@ -8,9 +8,9 @@ import (
 )
 
 type Configuration struct {
-	Server  ServerConfiguration
-	Mongodb MongodbConfiguration
-	Redis   RedisConfiguration
+	Server   ServerConfiguration
+	Services ServiceConfiguration
+	Redis    RedisConfiguration
 }
 
 // Setup initialize configuration

@@ -21,13 +21,13 @@ func SetupRedis() {
 	logger := utility.NewLogger()
 	getConfig := config.GetConfig()
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     fmt.Sprintf("%v:%v", getConfig.Redis.Redishost, getConfig.Redis.Redisport),
+		Addr:     fmt.Sprintf("%v:%v", getConfig.Redis.Host, getConfig.Redis.Port),
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})
 
 	if err := rdb.Ping(Ctx).Err(); err != nil {
-		fmt.Printf("%v:%v", getConfig.Redis.Redishost, getConfig.Redis.Redisport)
+		fmt.Printf("%v:%v", getConfig.Redis.Host, getConfig.Redis.Port)
 		log.Fatalln("Redis db error: ", err)
 	}
 	pong, _ := rdb.Ping(Ctx).Result()
@@ -40,7 +40,7 @@ type Redis struct {
 	Rdb *redis.Client
 }
 
-func GetRedisDb() *Redis {
+func GetRedisDb() RedisRepository {
 	return &Redis{Rdb: Rds}
 }
 
